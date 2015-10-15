@@ -1,0 +1,25 @@
+<!-- Page Content -->
+<div class="container">
+
+    <div class="row">
+	    <h3>Meetup Details Informations</h3>
+    </div>
+    
+    <div class="row">
+
+		<h1>There are {{meetups.length}} meetups.</h1>
+		<ul>
+			<li ng-repeat="meetup in meetups">
+				{{meetup.name}}
+			</li>
+		</ul>
+		<form method="post" ng-submit="createMeetup()">
+			<div class="col-lg-4 col-md-4">
+				<input type="text" class="form-control" placeholder="Meetup name" ng-model="meetupName">
+			</div>
+			<div class="col-lg-4 col-md-4">
+				<button type="submit" class="btn btn-primary">Add</button>
+			</div>
+		</form>
+	</div>
+</div>

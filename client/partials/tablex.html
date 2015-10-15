@@ -1,0 +1,34 @@
+<div class="container">
+
+    <div class="row">
+    	<h3>Contact Details</h3>
+    </div>
+    <div class="row">
+
+		<table st-table="rowCollection" class="table table-striped">
+			<thead>
+			<tr>
+				<th>first name</th>
+				<th>last name</th>
+				<th>birth date</th>
+				<th>balance</th>
+				<th>email</th>
+			</tr>
+			<tr>
+				<td>
+					<input type="text" ng-model="searchKeyword" placeholder="search keyword in table" class="form-control">
+				</td>
+			</tr>
+			</thead>
+			<tbody>
+			<tr ng-repeat="row in rowCollection | filter : searchKeyword">
+				<td>{{row.firstName | uppercase}}</td>
+				<td>{{row.lastName}}</td>
+				<td>{{row.birthDate | date}}</td>
+				<td>{{row.balance}}</td>
+				<td>{{row.email}}</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
