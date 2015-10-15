@@ -18,6 +18,9 @@ app.get('/', function (req, res){
 });
 
 app.use('/js', express.static(__dirname + '/client/js'));
+app.use('/css', express.static(__dirname + '/client/css'));
+app.use('/templates', express.static(__dirname + '/client/templates'));
+app.use('/partials', express.static(__dirname + '/client/partials'));
 
 //Rest api
 app.get('/api/meetups',meetupsController.list);
