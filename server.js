@@ -3,6 +3,7 @@ var express = require('express'),
 	bodyParser = require('body-parser'),
 	mongoose = require('mongoose'),
 	meetupsController = require('./server/controllers/meetups-controller');
+	formsController = require('./server/controllers/forms-controller');
 
 
 mongoose.connect('mongodb://localhost:27017/mean-demo');
@@ -25,6 +26,8 @@ app.use('/partials', express.static(__dirname + '/client/partials'));
 //Rest api
 app.get('/api/meetups',meetupsController.list);
 app.post('/api/meetups',meetupsController.create);
+
+app.post('/api/users',formsController.edit);
 
 app.listen(3000, function(){
 	console.log('I\'m Listening...');
