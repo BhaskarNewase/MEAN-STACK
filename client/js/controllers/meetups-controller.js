@@ -19,17 +19,12 @@ app.controller('MeetupCtrl', ['$scope', '$resource', function ($scope, $resource
 }]);
 
 /**
-* Practice controllers
+* Practice controllers - content form to save data in the database.
 */
 
 app.controller('PracticeCtrl', ['$scope','$resource',function ($scope, $resource) {
   
-  //alert('hello');
   var User = $resource('/api/users');
-
-  User.query(function (result){
-    $scope.users = result;
-  });
 
   $scope.saveData = function(){
     var user = new User();
@@ -39,8 +34,37 @@ app.controller('PracticeCtrl', ['$scope','$resource',function ($scope, $resource
     user.message = $scope.message;
     user.$save(function(result){
       $scope.name = $scope.email = $scope.phone = $scope.message = '';
+      alert('user save successfully.');
     });
   }
+}]);
+
+app.controller('TablexCtrl', ['$scope','$resource',function ($scope, $resource) {
+  
+  var rowCollection = [];
+  var User = $resource('/api/users');
+  
+  User.query(function (results){
+    $scope.rowCollection = results;
+  });
+  //$scope.meetups = []
+
+  $scope.editrow = function (id) {
+    User.query(function (id, results) {
+      //alert(results);
+      $scope.data = results;
+
+    });
+  }
+
+  $scope.deleterow = function (id) {
+    var user = new User();
+    user.id = id;
+    user.$delete(function(results){
+      alert('record deleted');
+    });
+  }
+
 }]);
 
 /**
@@ -65,17 +89,4 @@ app.controller('PageCtrl', function (/* $scope, $location, $http */) {
   $('.tooltip-social').tooltip({
     selector: "a[data-toggle=tooltip]"
   })
-});
-
-app.controller('TablexCtrl', function ($scope){
-  var rowCollection = [];
-  $scope.rowCollection = [
-  {"firstName":"bhaskar", "lastName":"Newase", "birthDate":"June", "balance":5000, "email":"bhaskar@timelesslearntech.com" },
-  {"firstName":"anand", "lastName":"Newase", "birthDate":"June", "balance":5000, "email":"bhaskar@timelesslearntech.com" },
-  {"firstName":"rohit", "lastName":"Newase", "birthDate":"June", "balance":5000, "email":"bhaskar@timelesslearntech.com" },
-  {"firstName":"satish", "lastName":"Newase", "birthDate":"June", "balance":5000, "email":"bhaskar@timelesslearntech.com" },
-  {"firstName":"prasad", "lastName":"Newase", "birthDate":"June", "balance":5000, "email":"bhaskar@timelesslearntech.com" },
-  {"firstName":"yuvraj", "lastName":"Newase", "birthDate":"June", "balance":5000, "email":"bhaskar@timelesslearntech.com" }
-  ]
-
 });

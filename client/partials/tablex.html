@@ -8,25 +8,26 @@
 		<table st-table="rowCollection" class="table table-striped">
 			<thead>
 			<tr>
-				<th>first name</th>
-				<th>last name</th>
-				<th>birth date</th>
-				<th>balance</th>
-				<th>email</th>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Mobile Number</th>
+				<th>Message</th>
+				<th>Actions</th>
 			</tr>
 			<tr>
-				<td>
+				<td colspan="3">
 					<input type="text" ng-model="searchKeyword" placeholder="search keyword in table" class="form-control">
 				</td>
 			</tr>
 			</thead>
 			<tbody>
 			<tr ng-repeat="row in rowCollection | filter : searchKeyword">
-				<td>{{row.firstName | uppercase}}</td>
-				<td>{{row.lastName}}</td>
-				<td>{{row.birthDate | date}}</td>
-				<td>{{row.balance}}</td>
+				<td>{{row.name | uppercase}}</td>
 				<td>{{row.email}}</td>
+				<td>{{row.phone}}</td>
+				<td>{{row.message}}</td>
+				<td><input type="button" class="btn btn-primary btn-xs" value="Edit" ng-click="editrow(row._id)"></td>
+				<td><input type="button" class="btn btn-danger btn-xs" value="Delete" ng-click="deleterow(row._id)"></td>
 			</tr>
 			</tbody>
 		</table>
