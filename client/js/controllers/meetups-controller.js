@@ -10,13 +10,39 @@ app.controller('MeetupCtrl', ['$scope', '$resource', function ($scope, $resource
 	$scope.createMeetup = function () {
 		var meetup = new Meetup();
 		meetup.name = $scope.meetupName;
-		meetup.$save(function (result){
+    meetup.$save(function (result){
 		$scope.meetups.push(result);
 		$scope.meetupName = '';
 		});
 	}
 
 }]);
+
+/**
+* Practice controllers
+*/
+
+app.controller('PracticeCtrl', ['$scope','$resource',function ($scope, $resource) {
+  
+  //alert('hello');
+  var User = $resource('/api/users');
+
+  User.query(function (result){
+    $scope.users = result;
+  });
+
+  $scope.saveData = function(){
+    var user = new User();
+    user.name = $scope.name;
+    user.email = $scope.email;
+    user.phone = $scope.phone;
+    user.message = $scope.message;
+    user.$save(function(result){
+      $scope.name = $scope.email = $scope.phone = $scope.message = '';
+    });
+  }
+}]);
+
 /**
  * Controls the Blog
  */
@@ -39,19 +65,6 @@ app.controller('PageCtrl', function (/* $scope, $location, $http */) {
   $('.tooltip-social').tooltip({
     selector: "a[data-toggle=tooltip]"
   })
-});
-
-/**
-* Practice controllers
-*/
-
-app.controller('PracticeCtrl', function ($scope) {
-  $scope.saveData = function(){
-    var name = $scope.name;
-    var email = $scope.email;
-    var phone = $scope.phone;
-    var message = $scope.message;
-  }
 });
 
 app.controller('TablexCtrl', function ($scope){

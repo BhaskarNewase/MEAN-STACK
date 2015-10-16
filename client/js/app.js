@@ -10,7 +10,7 @@ app.config(['$routeProvider', function ($routeProvider) {
     .when("/", {templateUrl: "partials/home.html", controller: "PageCtrl"})
     //practice pages
     .when("/meetups", {templateUrl: "partials/meetups.html", controller: "MeetupCtrl"})
-    .when("/practice", {templateUrl: "partials/practice.html", controller: "PracticeCtrl"})
+    .when("/users", {templateUrl: "partials/practice.html", controller: "PracticeCtrl"})
 
     //table display
     .when("/tablex", {templateUrl: "partials/tablex.html", controller: "TablexCtrl"})
