@@ -29,7 +29,7 @@ app.post('/api/meetups',meetupsController.create);
 app.get('/api/users',formsController.listdata);
 app.post('/api/users',formsController.edit);
 app.get('/api/users',formsController.editrow);
-app.delete('/api/users',formsController.deleterow);
+app.post('/api/users/delete',formsController.deleterow);
 
 
 
