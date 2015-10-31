@@ -20,6 +20,12 @@ module.exports.editrow = function(req, res){
 }
 
 module.exports.deleterow = function(req, res){
+
+	User.remove({ '_id' : req.body.key }, function (err, result) {
+   		res.json(result);
+   	});
+	console.log('helllo');
+	
 	// User.find({}, function (err, results){
 	// 	res.json(results);
 	// });
