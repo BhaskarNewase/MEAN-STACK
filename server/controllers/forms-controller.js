@@ -14,7 +14,7 @@ module.exports.listdata = function(req, res){
 }
 
 module.exports.editrow = function(req, res){
-	User.find(function (err, results){
+	User.findOne({'_id':req.body.key},function (err, results){
 		res.json(results);
 	});
 }
@@ -24,7 +24,7 @@ module.exports.deleterow = function(req, res){
 	User.remove({ '_id' : req.body.key }, function (err, result) {
    		res.json(result);
    	});
-	console.log('helllo');
+	//console.log('helllo');
 	
 	// User.find({}, function (err, results){
 	// 	res.json(results);

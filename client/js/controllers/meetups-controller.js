@@ -10,6 +10,7 @@ app.controller('MeetupCtrl', ['$scope', '$resource', function ($scope, $resource
 	$scope.createMeetup = function () {
 		var meetup = new Meetup();
 		meetup.name = $scope.meetupName;
+    if ($scope.meetupName=='') { return false; };
     meetup.$save(function (result){
 		$scope.meetups.push(result);
 		$scope.meetupName = '';
@@ -50,25 +51,33 @@ app.controller('TablexCtrl', ['$scope','$resource', '$http',function ($scope, $r
   //$scope.meetups = []
 
   $scope.editrow = function (id) {
-    alert(id)
-    User.query(function (id, results) {
-      //alert(results);
-      $scope.data = results;
+    var formData = {
+      'key' : id,
+    };
+    $http.post('/api/users/editrow', formData).
+        success(function(data) {
+          //alert('Row Deleted Successfully.')
+          //console.log(data["name"]);
 
+          $scope.name = data.name;
+          $scope.email = data.email;
+          $scope.phone = data.phone;
+          $scope.message = data.message;
+      }).error(function(data) {
+          alert('Opps their is something.')
     });
   }
 
   $scope.deleterow = function (id) {
       var formData = {
       'key' : id,
-      
     };
       $http.post('/api/users/delete', formData).
         success(function(data) {
-            console.log(data);
-            console.log("posted successfully");
+            alert('Row Deleted Successfully.')
+            //console.log(data);
         }).error(function(data) {
-            console.error("error in posting");
+            alert('Opps their is something wrong.')
         });
 
     // var user = new User();
@@ -76,6 +85,20 @@ app.controller('TablexCtrl', ['$scope','$resource', '$http',function ($scope, $r
     // user.$delete(function(results){
     //   alert('record deleted');
     // });
+  }
+
+  var User1 = $resource('/api/users');
+
+  $scope.saveData = function(){
+    var user = new User1();
+    user.name = $scope.name;
+    user.email = $scope.email;
+    user.phone = $scope.phone;
+    user.message = $scope.message;
+    user.$save(function(result){
+      $scope.name = $scope.email = $scope.phone = $scope.message = '';
+      alert('user save successfully.');
+    });
   }
 
 }]);
