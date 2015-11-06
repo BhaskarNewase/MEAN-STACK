@@ -27,7 +27,7 @@ app.controller('PracticeCtrl', ['$scope','$resource',function ($scope, $resource
   
   var User = $resource('/api/users');
 
-  $scope.saveData = function(){
+  $scope.saveData = function(){ 
     var user = new User();
     user.name = $scope.name;
     user.email = $scope.email;
@@ -56,13 +56,13 @@ app.controller('TablexCtrl', ['$scope','$resource', '$http',function ($scope, $r
     };
     $http.post('/api/users/editrow', formData).
         success(function(data) {
-          //alert('Row Deleted Successfully.')
-          //console.log(data["name"]);
-
+          //console.log(data);
+          $scope.id = data._id;
           $scope.name = data.name;
           $scope.email = data.email;
           $scope.phone = data.phone;
           $scope.message = data.message;
+          $('#myModal').modal('show');
       }).error(function(data) {
           alert('Opps their is something.')
     });
@@ -89,7 +89,7 @@ app.controller('TablexCtrl', ['$scope','$resource', '$http',function ($scope, $r
 
   var User1 = $resource('/api/users');
 
-  $scope.saveData = function(){
+  $scope.saveData = function(){ 
     var user = new User1();
     user.name = $scope.name;
     user.email = $scope.email;
@@ -98,6 +98,23 @@ app.controller('TablexCtrl', ['$scope','$resource', '$http',function ($scope, $r
     user.$save(function(result){
       $scope.name = $scope.email = $scope.phone = $scope.message = '';
       alert('user save successfully.');
+    });
+  }
+
+  //var User1 = $resource('/api/users');
+
+  $scope.updateData = function(){ 
+    var User2 = $resource('/api/users/updateData');
+    var user = new User2();
+    user.id = $scope.id;
+    user.name = $scope.name;
+    user.email = $scope.email;
+    user.phone = $scope.phone;
+    user.message = $scope.message;
+    user.$save(function(result){
+      $scope.name = $scope.email = $scope.phone = $scope.message = '';
+      alert('user information updated successfully.');
+      $('#myModal').modal('hide');
     });
   }
 

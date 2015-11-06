@@ -31,14 +31,33 @@
 			</tr>
 			</tbody>
 		</table>
-		<form method="post" ng-submit="saveData()">
-			<div class="col-sm-10">
+
+	</div>
+
+	<div class="modal fade" id="myModal">
+	  <div class="modal-dialog">
+	    <form method="post" ng-submit="updateData()">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title">Update Contact Details</h4>
+	      </div>
+	      <div class="modal-body">
+	        
+				<input type="text" ng-model="id" class="form-control"></br>
 				<input type="text" ng-model="name" class="form-control"></br>
 				<input type="email" ng-model="email" class="form-control"></br>
 				<input type="text" ng-model="phone" class="form-control"></br>
 				<textarea ng-model="message" id="input4" rows="6" class="form-control ng-pristine ng-valid" name="contact_message"></textarea></br>
-	            <button type="submit" class="btn btn-primary">Submit</button>
-			</div>
-		</form>
+	            
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <button type="submit" class="btn btn-primary">Submit</button>
+	      </div>
+	      
+	    </div>
+	  </div>
+	  </form>
 	</div>
 </div>

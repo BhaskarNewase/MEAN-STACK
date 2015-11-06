@@ -24,10 +24,13 @@ module.exports.deleterow = function(req, res){
 	User.remove({ '_id' : req.body.key }, function (err, result) {
    		res.json(result);
    	});
-	//console.log('helllo');
-	
-	// User.find({}, function (err, results){
-	// 	res.json(results);
-	// });
-	//console.log('record deleted successfully');
+}
+
+module.exports.updateData = function(req, res){
+	//console.log(req.body.id);
+	User.update({_id:req.body.id},{$set:{name:req.body.name, email:req.body.email, phone:req.body.phone, 
+	message:req.body.message, }},function (err, results){
+		res.json(results);
+	});
+	// collection.update({_id:"123"}, {$set: {author:"Jessica"}});
 }

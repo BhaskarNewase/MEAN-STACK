@@ -31,6 +31,8 @@ app.post('/api/users',formsController.edit);
 //app.get('/api/users',formsController.editrow);
 app.post('/api/users/delete',formsController.deleterow);
 app.post('/api/users/editrow',formsController.editrow);
+app.post('/api/users/editrow',formsController.editrow);
+app.post('/api/users/updateData',formsController.updateData);
 
 
 
